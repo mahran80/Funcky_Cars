@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Funcky – Drive the Vibe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+<<<<<<< HEAD
+  
+/* alaa's comment */
+    /* :root {
+=======
+    /* =============================================
+    CSS CUSTOM PROPERTIES & RESET
+    
+    ============================================= */
+    /*ahmed comment*/
+    :root {
+>>>>>>> 9332f84729b1769b67d6774b7d643adea4be261a
+      --acid: #c01f06;
+      --acid2: #FF3D00;
+      --dark: #0A0A0A;
+      --dark2: #111111;
+      --dark3: #1A1A1A;
+      --card: #161616;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #F0F0F0;
+      --muted: #888;
+      --radius: 16px;
+      --radius-lg: 24px;
+    } */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    img { display: block; width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* =============================================
+       ANIMATED BACKGROUND NOISE GRAIN
+    ============================================= */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 200px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* =============================================
+       SCROLLBAR
+    ============================================= */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--acid); border-radius: 99px; }
+
+    /* =============================================
+       NAVBAR
+    ============================================= */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 5%;
+      background: rgba(10,10,10,0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      transition: padding 0.3s;
+    }
+
+    nav.scrolled { padding: 14px 5%; }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: var(--acid);
+      position: relative;
+    }
+    .logo span { color: var(--text); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--acid);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--acid);
+      color: var(--dark);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 99px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200,255,0,0.3);
+    }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    /* =============================================
+       HERO SECTION
+    ============================================= */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated background blobs */
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      animation: blob-float 8s ease-in-out infinite;
+    }
+    .hero-blob-1 {
+      width: 600px; height: 600px;
+      background: var(--acid);
+      top: -200px; right: -100px;
+      animation-delay: 0s;
+    }
+    .hero-blob-2 {
+      width: 400px; height: 400px;
+      background: var(--acid2);
+      bottom: -100px; left: -100px;
+      animation-delay: -4s;
+    }
+
+    @keyframes blob-float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    /* Grid lines decoration */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,255,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 99px;
+      padding: 8px 16px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--acid);
+      margin-bottom: 28px;
+      animation: fade-up 0.8s ease both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--acid);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.5; transform:scale(1.4); } }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 9vw, 8rem);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      animation: fade-up 0.8s 0.1s ease both;
+    }
+    .hero-title .accent { color: var(--acid); display: block; }
+    .hero-title .stroke {
+      -webkit-text-stroke: 2px var(--text);
+      color: transparent;
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 40px;
+      animation: fade-up 0.8s 0.2s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fade-up 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--acid);
+      color: var(--dark);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      padding: 16px 32px;
+      border-radius: 99px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.2);
+      transform: translateX(-100%);
+      transition: transform 0.4s;
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(200,255,0,0.35); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 16px 32px;
+      border-radius: 99px;
+      border: 1px solid var(--glass-border);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover {
+      background: var(--glass);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-3px);
+    }
+
+    .btn-arrow {
+      width: 20px; height: 20px;
+      border-top: 2px solid currentColor;
+      border-right: 2px solid currentColor;
+      transform: rotate(45deg);
+      transition: transform 0.3s;
+    }
+    .btn-primary:hover .btn-arrow,
+    .btn-ghost:hover .btn-arrow {
+      transform: rotate(45deg) translate(3px,-3px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 56px;
+      animation: fade-up 0.8s 0.4s ease both;
+    }
+    .stat { border-left: 2px solid var(--acid); padding-left: 14px; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--acid);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+    .hero-image-wrap {
+      position: relative;
+      z-index: 2;
+      animation: fade-in 1s 0.3s ease both;
+    }
+
+    .hero-car {
+      width: 100%;
+      max-width: 680px;
+      border-radius: var(--radius-lg);
+      object-fit: cover;
+      height: 440px;
+      filter: drop-shadow(0 40px 60px rgba(0,0,0,0.6));
+      animation: car-float 5s ease-in-out infinite;
+    }
+
+    @keyframes car-float {
+      0%,100%{ transform: translateY(0); }
+      50%{ transform: translateY(-16px); }
+    }
+
+    /* Speed lines behind car */
+    .speed-lines {
+      position: absolute;
+      left: -60px; top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      animation: lines-move 1.5s linear infinite;
+    }
+    @keyframes lines-move {
+      0%{ opacity:0; transform: translateY(-50%) translateX(0); }
+      50%{ opacity:1; }
+      100%{ opacity:0; transform: translateY(-50%) translateX(-40px); }
+    }
+    .speed-line {
+      height: 2px;
+      background: linear-gradient(to left, var(--acid), transparent);
+      border-radius: 99px;
+    }
+
+    /* =============================================
+       MARQUEE TICKER
+    ============================================= */
+    .ticker {
+      background: var(--acid);
+      color: var(--dark);
+      padding: 14px 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 32px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+    .ticker-sep { color: rgba(0,0,0,0.3); }
+
+    @keyframes marquee { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+
+    /* =============================================
+       SECTION SHARED
+    ============================================= */
+    section { position: relative; z-index: 1; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--acid);
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      width: 24px; height: 2px;
+      background: var(--acid);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: 1px;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .section-header { margin-bottom: 60px; }
+
+    /* =============================================
+       CAR FILTER + CARS SECTION
+    ============================================= */
+    .cars-section {
+      padding: 100px 5%;
+      background: var(--dark2);
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .filter-btn {
+      padding: 10px 24px;
+      border-radius: 99px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--muted);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--acid);
+      color: var(--dark);
+      border-color: var(--acid);
+      box-shadow: 0 4px 20px rgba(200,255,0,0.25);
+    }
+
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .car-card {
+      background: var(--card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.35s, box-shadow 0.35s;
+      cursor: pointer;
+      position: relative;
+    }
+    .car-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(200,255,0,0.15);
+    }
+
+    .car-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 210px;
+    }
+    .car-img-wrap img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .car-card:hover .car-img-wrap img { transform: scale(1.08); }
+
+    .car-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: var(--acid);
+      color: var(--dark);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 99px;
+    }
+
+    .car-rating {
+      position: absolute;
+      top: 14px; right: 14px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 99px;
+      padding: 5px 10px;
+      font-size: 0.75rem;
+      color: #FFD700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .car-info { padding: 22px; }
+
+    .car-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .car-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.5; margin-bottom: 20px; }
+
+    .car-specs {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .spec {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .spec-icon { font-size: 1rem; }
+
+    .car-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .car-price { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; }
+    .car-price span { font-size: 0.75rem; font-weight: 400; color: var(--muted); }
+
+    .book-btn {
+      padding: 10px 22px;
+      background: var(--acid);
+      color: var(--dark);
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      border-radius: 99px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .book-btn:hover { transform: scale(1.05); box-shadow: 0 8px 24px rgba(200,255,0,0.35); }
+
+    /* Hidden car for filtering */
+    .car-card.hidden { display: none; }
+
+    /* =============================================
+       WHY FUNCKY SECTION
+    ============================================= */
+    .why-section {
+      padding: 100px 5%;
+      background: var(--dark);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .why-card {
+      background: var(--card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      transition: all 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::before {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 150px; height: 150px;
+      border-radius: 50%;
+      background: var(--acid);
+      opacity: 0;
+      transition: opacity 0.4s, transform 0.4s;
+      transform: scale(0.5);
+    }
+    .why-card:hover::before { opacity: 0.07; transform: scale(1.5); }
+    .why-card:hover { transform: translateY(-8px); border-color: rgba(200,255,0,0.2); }
+
+    .why-icon {
+      width: 64px; height: 64px;
+      background: rgba(200,255,0,0.1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+      transition: transform 0.3s;
+    }
+    .why-card:hover .why-icon { transform: rotate(-10deg) scale(1.1); }
+
+    .why-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .why-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+    /* =============================================
+       PARALLAX SHOWCASE
+    ============================================= */
+    .showcase {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+    }
+    .showcase-bg {
+      position: absolute;
+      inset: -80px;
+      background-image: url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+      filter: brightness(0.35);
+    }
+    .showcase-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5%;
+    }
+    .showcase-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 7rem);
+      letter-spacing: 3px;
+      line-height: 1;
+    }
+    .showcase-title .hl { color: var(--acid); }
+    .showcase-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 16px;
+      max-width: 480px;
+    }
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    .testimonials {
+      padding: 100px 5%;
+      background: var(--dark2);
+      overflow: hidden;
+    }
+
+    .carousel-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    .testi-card {
+      min-width: 100%;
+      background: var(--card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 52px;
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .testi-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--acid);
+    }
+
+    .testi-quote {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--acid);
+      margin-bottom: 16px;
+    }
+
+    .testi-text {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .testi-author-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .testi-author-role { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+    .testi-stars {
+      display: flex;
+      gap: 4px;
+      color: #FFD700;
+      font-size: 1.1rem;
+      margin-top: 12px;
+    }
+
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+      justify-content: center;
+    }
+
+    .carousel-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .carousel-btn:hover { background: var(--acid); color: var(--dark); border-color: var(--acid); }
+
+    .carousel-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 99px;
+      background: var(--glass-border);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .dot.active { width: 28px; background: var(--acid); }
+
+    /* =============================================
+       CTA SECTION
+    ============================================= */
+    .cta-section {
+      padding: 100px 5%;
+      background: var(--dark);
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #111 0%, #1a1a00 50%, #111 100%);
+      border: 1px solid rgba(200,255,0,0.15);
+      border-radius: 32px;
+      padding: 80px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: var(--acid);
+      opacity: 0.06;
+      animation: blob-float 6s ease-in-out infinite;
+    }
+    .cta-box::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 200px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: var(--acid2);
+      opacity: 0.05;
+      animation: blob-float 8s ease-in-out infinite reverse;
+    }
+
+    .cta-text { position: relative; z-index: 2; }
+
+    .cta-eyebrow {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--acid);
+      margin-bottom: 16px;
+    }
+
+    .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 400px;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+    }
+
+    .cta-big-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--acid);
+      color: var(--dark);
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 20px 40px;
+      border-radius: 99px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+    .cta-big-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(200,255,0,0.4);
+    }
+
+    .cta-note { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .cta-note::before { content: '✓'; color: var(--acid); font-weight: bold; }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: #080808;
+      border-top: 1px solid var(--glass-border);
+      padding: 80px 5% 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand .logo { font-size: 2.5rem; margin-bottom: 16px; }
+    .footer-brand p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 28px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+    }
+    .social-link {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: all 0.25s;
+      text-decoration: none;
+    }
+    .social-link:hover {
+      background: var(--acid);
+      color: var(--dark);
+      border-color: var(--acid);
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.88rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--acid); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--glass-border);
+      padding-top: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-bottom p { font-size: 0.8rem; color: var(--muted); }
+    .footer-bottom span { color: var(--acid); }
+
+    /* =============================================
+       SCROLL REVEAL ANIMATIONS
+    ============================================= */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 1024px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .cars-grid { grid-template-columns: repeat(2, 1fr); }
+      .cta-box { flex-direction: column; text-align: center; }
+      .cta-sub { max-width: 100%; }
+      .cta-actions { align-items: center; width: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+      .hero-image-wrap { order: -1; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-sub { margin: 0 auto 40px; }
+      .hero-badge { justify-content: center; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .cars-grid { grid-template-columns: 1fr; }
+      .testi-card { flex-direction: column; padding: 32px; }
+      .cta-box { padding: 48px 32px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; gap: 24px; }
+    }
+
+    /* Mobile nav open */
+    nav.open .nav-links {
+      display: flex;
+      position: fixed;
+      inset: 0;
+      background: var(--dark);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      z-index: 999;
+    }
+    nav.open .nav-links a { font-size: 1.5rem; }
+  </style>
+</head>
+<body>
+
+  <!-- =============================================
+       NAVBAR
+  ============================================= -->
+  <nav id="navbar">
+    <div class="logo">FUNC<span>KY</span></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#cars">Fleet</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta">Book a Ride</button>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- =============================================
+       HERO
+  ============================================= -->
+  <section class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        New: Electric Fleet Now Available
+      </div>
+      <h1 class="hero-title">
+        <span>Drive</span>
+        <span class="accent">The</span>
+        <span class="stroke">Vibe</span>
+      </h1>
+      <p class="hero-sub">
+        Premium cars. Effortless booking. Zero drama.
+        Funcky gives you the wheel so you can write your own story — mile by mile.
+      </p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="document.getElementById('cars').scrollIntoView({behavior:'smooth'})">
+          Rent Now <span class="btn-arrow"></span>
+        </button>
+        <button class="btn-ghost" onclick="document.getElementById('cars').scrollIntoView({behavior:'smooth'})">
+          Explore Cars <span class="btn-arrow"></span>
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Vehicles</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">50K+</div>
+          <div class="stat-label">Happy Riders</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">App Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap">
+      <div class="speed-lines" aria-hidden="true">
+        <div class="speed-line" style="width:160px"></div>
+        <div class="speed-line" style="width:100px"></div>
+        <div class="speed-line" style="width:200px"></div>
+        <div class="speed-line" style="width:80px"></div>
+        <div class="speed-line" style="width:140px"></div>
+      </div>
+      <img
+        class="hero-car"
+        src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=900&q=80"
+        alt="Luxury Sports Car"
+        loading="eager"
+      />
+    </div>
+  </section>
+
+  <!-- =============================================
+       TICKER
+  ============================================= -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <!-- Repeated twice for seamless loop -->
+      <div class="ticker-item">🚗 FREE INSURANCE <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">⚡ ELECTRIC VEHICLES <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">🛡️ 24/7 SUPPORT <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">📍 100+ PICKUP POINTS <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">🎉 NO HIDDEN FEES <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">🚀 INSTANT BOOKING <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">🚗 FREE INSURANCE <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">⚡ ELECTRIC VEHICLES <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">🛡️ 24/7 SUPPORT <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">📍 100+ PICKUP POINTS <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">🎉 NO HIDDEN FEES <span class="ticker-sep">•</span></div>
+      <div class="ticker-item">🚀 INSTANT BOOKING <span class="ticker-sep">•</span></div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       CARS SECTION
+  ============================================= -->
+  <section id="cars" class="cars-section">
+    <div class="section-header reveal">
+      <div class="section-label">Our Fleet</div>
+      <h2 class="section-title">Pick Your Ride</h2>
+      <p class="section-sub">From city sedans to mountain-ready SUVs — we've got a car for every mood and every road.</p>
+    </div>
+
+    <div class="filter-bar reveal reveal-delay-1">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="sedan">Sedan</button>
+      <button class="filter-btn" data-filter="suv">SUV</button>
+      <button class="filter-btn" data-filter="luxury">Luxury</button>
+      <button class="filter-btn" data-filter="electric">Electric</button>
+    </div>
+
+    <div class="cars-grid">
+      <!-- Card 1 -->
+      <div class="car-card reveal" data-category="luxury">
+        <div class="car-img-wrap">
+          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="Porsche 911" loading="lazy"/>
+          <span class="car-badge">Luxury</span>
+          <div class="car-rating">★ 4.9</div>
+        </div>
+        <div class="car-info">
+          <div class="car-name">Porsche 911 Carrera</div>
+          <div class="car-desc">Pure driving perfection. 443 horsepower, rear-engine legend, built for those who demand the extraordinary.</div>
+          <div class="car-specs">
+            <div class="spec"><span class="spec-icon">⚡</span> 443 HP</div>
+            <div class="spec"><span class="spec-icon">👥</span> 2 Seats</div>
+            <div class="spec"><span class="spec-icon">⚙️</span> Auto</div>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$299 <span>/ day</span></div>
+            <button class="book-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="car-card reveal reveal-delay-1" data-category="suv">
+        <div class="car-img-wrap">
+          <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80" alt="Range Rover" loading="lazy"/>
+          <span class="car-badge">SUV</span>
+          <div class="car-rating">★ 4.8</div>
+        </div>
+        <div class="car-info">
+          <div class="car-name">Range Rover Sport</div>
+          <div class="car-desc">Command the road or the wilderness. Sumptuous interior meets serious all-terrain capability.</div>
+          <div class="car-specs">
+            <div class="spec"><span class="spec-icon">⚡</span> 395 HP</div>
+            <div class="spec"><span class="spec-icon">👥</span> 5 Seats</div>
+            <div class="spec"><span class="spec-icon">⚙️</span> Auto</div>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$189 <span>/ day</span></div>
+            <button class="book-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="car-card reveal reveal-delay-2" data-category="electric">
+        <div class="car-img-wrap">
+          <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&q=80" alt="Tesla Model S" loading="lazy"/>
+          <span class="car-badge">Electric</span>
+          <div class="car-rating">★ 5.0</div>
+        </div>
+        <div class="car-info">
+          <div class="car-name">Tesla Model S Plaid</div>
+          <div class="car-desc">1,020 horsepower, 0-60 in 1.99s. The future of driving is here and it's absolutely bonkers.</div>
+          <div class="car-specs">
+            <div class="spec"><span class="spec-icon">⚡</span> 1020 HP</div>
+            <div class="spec"><span class="spec-icon">👥</span> 5 Seats</div>
+            <div class="spec"><span class="spec-icon">🔋</span> EV</div>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$249 <span>/ day</span></div>
+            <button class="book-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="car-card reveal" data-category="sedan">
+        <div class="car-img-wrap">
+          <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=600&q=80" alt="BMW 3 Series" loading="lazy"/>
+          <span class="car-badge">Sedan</span>
+          <div class="car-rating">★ 4.7</div>
+        </div>
+        <div class="car-info">
+          <div class="car-name">BMW 3 Series M340i</div>
+          <div class="car-desc">The ultimate everyday driver. Sport and sophistication in perfect harmony on every commute.</div>
+          <div class="car-specs">
+            <div class="spec"><span class="spec-icon">⚡</span> 382 HP</div>
+            <div class="spec"><span class="spec-icon">👥</span> 5 Seats</div>
+            <div class="spec"><span class="spec-icon">⚙️</span> Auto</div>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$129 <span>/ day</span></div>
+            <button class="book-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="car-card reveal reveal-delay-1" data-category="luxury">
+        <div class="car-img-wrap">
+          <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=600&q=80" alt="Mercedes AMG GT" loading="lazy"/>
+          <span class="car-badge">Luxury</span>
+          <div class="car-rating">★ 4.9</div>
+        </div>
+        <div class="car-info">
+          <div class="car-name">Mercedes-AMG GT 63</div>
+          <div class="car-desc">A four-door coupe with sports car soul. Jaw-dropping looks, race-bred performance.</div>
+          <div class="car-specs">
+            <div class="spec"><span class="spec-icon">⚡</span> 630 HP</div>
+            <div class="spec"><span class="spec-icon">👥</span> 4 Seats</div>
+            <div class="spec"><span class="spec-icon">⚙️</span> Auto</div>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$349 <span>/ day</span></div>
+            <button class="book-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="car-card reveal reveal-delay-2" data-category="suv">
+        <div class="car-img-wrap">
+          <img src="https://images.unsplash.com/photo-1612544448445-b8232cff3b6c?w=600&q=80" alt="Jeep Wrangler" loading="lazy"/>
+          <span class="car-badge">SUV</span>
+          <div class="car-rating">★ 4.6</div>
+        </div>
+        <div class="car-info">
+          <div class="car-name">Jeep Wrangler Rubicon</div>
+          <div class="car-desc">No road? No problem. The Rubicon was born to go where others dare not follow. Adventure awaits.</div>
+          <div class="car-specs">
+            <div class="spec"><span class="spec-icon">⚡</span> 285 HP</div>
+            <div class="spec"><span class="spec-icon">👥</span> 5 Seats</div>
+            <div class="spec"><span class="spec-icon">⚙️</span> 4WD</div>
+          </div>
+          <div class="car-footer">
+            <div class="car-price">$119 <span>/ day</span></div>
+            <button class="book-btn">Book Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       PARALLAX SHOWCASE
+  ============================================= -->
+  <div class="showcase">
+    <div class="showcase-bg" id="parallax-bg"></div>
+    <div class="showcase-content">
+      <h2 class="showcase-title">
+        Every Road<br>
+        <span class="hl">Is Yours.</span>
+      </h2>
+      <p class="showcase-sub">Whether it's a quick city sprint or a cross-country adventure — Funcky has you covered.</p>
+    </div>
+  </div>
+
+  <!-- =============================================
+       WHY FUNCKY
+  ============================================= -->
+  <section id="why" class="why-section">
+    <div class="section-header reveal">
+      <div class="section-label">Why Us</div>
+      <h2 class="section-title">Why Choose Funcky?</h2>
+      <p class="section-sub">We've obsessed over every detail so your experience is smooth, safe, and spectacular from tap-to-trip.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Instant Booking</div>
+        <div class="why-desc">Book any car in under 60 seconds. No paperwork, no waiting — just pick, pay, and go.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">🛡️</div>
+        <div class="why-title">Full Coverage</div>
+        <div class="why-desc">Comprehensive insurance included with every booking. Drive with total peace of mind.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">📍</div>
+        <div class="why-title">100+ Locations</div>
+        <div class="why-desc">Pickup points across the city and beyond. We're always around the corner from you.</div>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">💬</div>
+        <div class="why-title">24/7 Support</div>
+        <div class="why-desc">Real humans, available round the clock. We've got your back whenever you need us.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       TESTIMONIALS
+  ============================================= -->
+  <section id="testimonials" class="testimonials">
+    <div class="section-header reveal">
+      <div class="section-label">Reviews</div>
+      <h2 class="section-title">What Riders Say</h2>
+    </div>
+
+    <div class="carousel-wrap reveal">
+      <div class="carousel-track" id="carousel-track">
+
+        <div class="testi-card">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=160&q=80" alt="Sarah M." loading="lazy"/>
+          <div>
+            <div class="testi-quote">★★★★★ Customer Review</div>
+            <p class="testi-text">"Rented a Tesla Model S for a weekend road trip and my jaw is still on the floor. The car was immaculate, the booking took literally 45 seconds, and the Funcky team was super responsive. This is the future of car rental."</p>
+            <div class="testi-author-name">Sarah Mitchell</div>
+            <div class="testi-author-role">Travel Blogger, San Francisco</div>
+            <div class="testi-stars">★ ★ ★ ★ ★</div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&q=80" alt="James K." loading="lazy"/>
+          <div>
+            <div class="testi-quote">★★★★★ Customer Review</div>
+            <p class="testi-text">"I've tried every rental service out there. Funcky absolutely destroys the competition. The Porsche I rented was pristine, priced fairly, and I had zero surprise charges. The brand name says it all — it's genuinely fun."</p>
+            <div class="testi-author-name">James Kowalski</div>
+            <div class="testi-author-role">Entrepreneur, Chicago</div>
+            <div class="testi-stars">★ ★ ★ ★ ★</div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <img class="testi-avatar" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=160&q=80" alt="Priya S." loading="lazy"/>
+          <div>
+            <div class="testi-quote">★★★★★ Customer Review</div>
+            <p class="testi-text">"Needed an SUV last minute for a family trip. Funcky had the Range Rover ready in 2 hours, perfectly clean, full tank. The customer service rep called to check in on us mid-trip. That's the kind of care that earns loyalty."</p>
+            <div class="testi-author-name">Priya Sharma</div>
+            <div class="testi-author-role">Product Manager, New York</div>
+            <div class="testi-stars">★ ★ ★ ★ ★</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="prev-btn" onclick="slide(-1)">&#8592;</button>
+      <div class="carousel-dots" id="carousel-dots">
+        <div class="dot active" onclick="goTo(0)"></div>
+        <div class="dot" onclick="goTo(1)"></div>
+        <div class="dot" onclick="goTo(2)"></div>
+      </div>
+      <button class="carousel-btn" id="next-btn" onclick="slide(1)">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- =============================================
+       CTA SECTION
+  ============================================= -->
+  <section id="contact" class="cta-section">
+    <div class="cta-box reveal">
+      <div class="cta-text">
+        <div class="cta-eyebrow">Ready to Roll?</div>
+        <h2 class="cta-title">Your Next Adventure<br>Starts Here</h2>
+        <p class="cta-sub">Join 50,000+ happy riders. Book your first Funcky ride and get 20% off with code <strong style="color:var(--acid)">FUNCKY20</strong></p>
+      </div>
+      <div class="cta-actions">
+        <button class="cta-big-btn">
+          🚀 Book My Ride
+        </button>
+        <div class="cta-note">No credit card required to browse</div>
+        <div class="cta-note">Free cancellation up to 24h before</div>
+        <div class="cta-note">Instant confirmation guaranteed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================
+       FOOTER
+  ============================================= -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">FUNC<span>KY</span></div>
+        <p>The car rental experience that doesn't suck. Premium vehicles, zero drama, maximum fun — that's the Funcky promise.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">📸</a>
+          <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+          <a href="#" class="social-link" aria-label="Facebook">👤</a>
+          <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Fleet</h4>
+        <ul class="footer-links">
+          <li><a href="#">Sedans</a></li>
+          <li><a href="#">SUVs</a></li>
+          <li><a href="#">Luxury</a></li>
+          <li><a href="#">Electric</a></li>
+          <li><a href="#">Sports</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="#">About Funcky</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Partners</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="tel:+18005555555">📞 +1 800 555 5555</a></li>
+          <li><a href="mailto:hello@funcky.io">✉️ hello@funcky.io</a></li>
+          <li><a href="#">📍 100+ Locations Nationwide</a></li>
+          <li><a href="#">💬 Live Chat</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 <span>Funcky</span>. All rights reserved. Crafted with ❤️ and a love for great drives.</p>
+      <div style="display:flex;gap:24px">
+        <a href="#" style="font-size:0.8rem;color:var(--muted)">Privacy Policy</a>
+        <a href="#" style="font-size:0.8rem;color:var(--muted)">Terms of Service</a>
+        <a href="#" style="font-size:0.8rem;color:var(--muted)">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =============================================
+       JAVASCRIPT
+  ============================================= -->
+  <script>
+    /* ----- NAVBAR SCROLL ----- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ----- MOBILE NAV ----- */
+    function toggleNav() {
+      navbar.classList.toggle('open');
+    }
+
+    /* Close mobile nav on link click */
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => navbar.classList.remove('open'));
+    });
+
+    /* ----- SCROLL REVEAL ----- */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    /* ----- CAR FILTER ----- */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const carCards = document.querySelectorAll('.car-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        carCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.classList.remove('hidden');
+            // Trigger reveal animation again
+            card.classList.remove('visible');
+            setTimeout(() => card.classList.add('visible'), 50);
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    /* ----- PARALLAX ----- */
+    const parallaxBg = document.getElementById('parallax-bg');
+    window.addEventListener('scroll', () => {
+      const showcase = parallaxBg.closest('.showcase');
+      const rect = showcase.getBoundingClientRect();
+      const scrolled = -rect.top * 0.4;
+      parallaxBg.style.transform = `translateY(${scrolled}px)`;
+    }, { passive: true });
+
+    /* ----- CAROUSEL ----- */
+    let currentSlide = 0;
+    const totalSlides = 3;
+    const track = document.getElementById('carousel-track');
+    const dots = document.querySelectorAll('.carousel-dots .dot');
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentSlide));
+    }
+
+    function slide(dir) {
+      currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+
+    function goTo(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+
+    /* Auto-advance carousel */
+    setInterval(() => slide(1), 5000);
+
+    /* ----- ANIMATED COUNTER (stat numbers) ----- */
+    function animateCounter(el, target, suffix) {
+      let start = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        start += step;
+        if (start >= target) { start = target; clearInterval(timer); }
+        el.textContent = Math.floor(start) + suffix;
+      }, 16);
+    }
+
+    /* Trigger counters when hero is visible */
+    const heroStats = document.querySelectorAll('.stat-num');
+    const statData = [
+      { target: 200, suffix: '+' },
+      { target: 50, suffix: 'K+' },
+      { target: 4.9, suffix: '★' }
+    ];
+
+    const statObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        heroStats.forEach((el, i) => {
+          const d = statData[i];
+          animateCounter(el, d.target, d.suffix);
+        });
+        statObserver.disconnect();
+      }
+    }, { threshold: 0.5 });
+
+    if (heroStats[0]) statObserver.observe(heroStats[0]);
+  </script>
+</body>
+</html>
